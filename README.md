@@ -1,2 +1,2 @@
-# Scala_Assignment_1
+# Scala_Assignment01
 Scala Assignment
