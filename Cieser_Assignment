@@ -1,0 +1,38 @@
+def main(args:Array[String]){
+
+	val alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+
+	val E=(c:Char,key:Int,a:String)=>a((a.indexOf(c.toUpper)+key)%a.size)
+	val D=(c:Char,key:Int,a:String)=>a((a.indexOf(c.toUpper)-key+a.size)%a.size)
+	val ciepher=(algo:(Char,Int,String)=>Char,s:String,key:Int,a:String)=>s.map(algo(_,key,a))
+	var s=scala.io.StdIn.readLine("Secret message: ")
+	print("Encrypt by: ")
+	var x= scala.io.StdIn.readInt()
+
+	val shift = (scala.io.StdIn.readLine("Shift By: ").toInt + alphabet.size) % alphabet.size
+	val inputText = scala.io.StdIn.readLine("Secret Message: ")
+
+	val outputText = inputText.map( (c: Char) => { 
+
+
+		val x = alphabet.indexOf(c.toUpper)
+		if (x == -1){
+			c
+		}
+		else{
+			alphabet((x + shift) % alphabet.size)
+			} 
+	});
+
+	print("Decrypt by: ")
+	var y= scala.io.StdIn.readInt()
+
+	println("Output: "+outputText);
+	val Encrypt=ciepher(E,s,x,alphabet)
+	val Decrypt=ciepher(D,Encrypt,y,alphabet)
+	println(Encrypt)
+	println(Decrypt)
+
+
+  }
+}
